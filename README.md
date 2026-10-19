@@ -28,7 +28,8 @@ jath/config.py     site identity, navigation
 jath/content.py    Markdown loader + Pygments highlighting
 jath/layout.py     <head>, navbar, footer
 jath/routes.py     pages
-content/           Markdown documents fed to the pages
+content/pages/     one Markdown file per page (blog.md holds the blog digest)
+content/projects/  one Markdown file per project
 static/            CSS, fonts, favicon
 ```
 

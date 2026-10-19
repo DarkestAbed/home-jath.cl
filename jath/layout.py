@@ -4,7 +4,7 @@ from datetime import date
 
 from fasthtml.common import (
     A, Body, Button, Div, Footer, Head, Html, Li, Link, Main, Meta, Nav, NotStr,
-    P, Script, Title, Ul,
+    P, Script, Span, Title, Ul,
 )
 
 from .config import NAV, SITE
@@ -49,25 +49,26 @@ def is_external(href: str) -> bool:
     return href.startswith(("http://", "https://", "mailto:"))
 
 
-def ext_link(text, href, **kw):
+def ext_link(*children, href: str, **kw):
     """Anchor that opens off-site links in a new tab."""
     if is_external(href) and not href.startswith("mailto:"):
         kw |= {"target": "_blank", "rel": "noopener"}
-    return A(text, href=href, **kw)
+    return A(*children, href=href, **kw)
 
 
 def site_nav(path: str):
     def item(label, href):
         current = not is_external(href) and (path == href or path.startswith(href + "/"))
-        return Li(ext_link(label, href, aria_current="page" if current else None))
+        return Li(ext_link(label, href=href, aria_current="page" if current else None))
 
     return Nav(
         Div(
-            A(SITE["name"], href="/", cls="nav-brand"),
-            Button("menú", cls="nav-toggle", onclick="toggleNav(this)",
-                   aria_expanded="false", aria_controls="nav-links"),
+            A(Span(SITE["name"], cls="brand-full"), Span(SITE["short"], cls="brand-short"),
+              href="/", cls="nav-brand", aria_label=SITE["name"]),
             Ul(*[item(l, h) for l, h in NAV], cls="nav-links", id="nav-links"),
-            Div(Button("☀ / ☾", cls="theme-btn", onclick="toggleTheme()",
+            Div(Button("menú", cls="nav-toggle", onclick="toggleNav(this)",
+                       aria_expanded="false", aria_controls="nav-links"),
+                Button("☀ / ☾", cls="theme-btn", onclick="toggleTheme()",
                        aria_label="Cambiar tema claro/oscuro"),
                 cls="nav-controls"),
             cls="nav-inner",
@@ -80,7 +81,7 @@ def site_footer():
     return Footer(
         P(f"© {date.today().year} {SITE['author']} · ",
           A(SITE["short"], href="/"), " · ",
-          ext_link("blog.jath.cl", SITE["blog_url"])),
+          ext_link("blog.jath.cl", href=SITE["blog_url"])),
         cls="site-footer",
     )
 

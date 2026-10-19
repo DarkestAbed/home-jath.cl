@@ -16,7 +16,11 @@ SITE = {
     "description": "Javier Thompson — desarrollador y tecnólogo.",
 }
 
-# (label, href). External links open the blog; everything else is local.
+# (label, href). Local paths get `aria-current` when active.
 NAV = [
-    ("Blog ↗", SITE["blog_url"]),
+    ("Sobre mí", "/sobre-mi"),
+    ("Skills", "/skills"),
+    ("Proyectos", "/proyectos"),
+    ("Blog", "/blog"),
+    ("Contacto", "/contacto"),
 ]

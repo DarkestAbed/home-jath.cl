@@ -6,6 +6,13 @@
    colors, so both themes keep working.
    ============================================================ */
 
+/* theme.css only defines the secondary accents for dark mode; give
+   light mode readable equivalents (≥ 4.5:1 on --bg). */
+[data-theme="light"] {
+  --accent-2: #b0307f;
+  --accent-3: #8a6400;
+}
+
 /* ── Navigation: active link + collapsible menu on small screens ── */
 .nav-links a[aria-current="page"] { color: var(--accent); }
 
@@ -22,7 +29,7 @@
   letter-spacing: 0.04em;
   line-height: 1.5;
   width: auto;
-  margin: 0 0 0 auto;
+  margin: 0;
 }
 .nav-toggle:hover { color: var(--accent); border-color: var(--accent); }
 
@@ -42,6 +49,281 @@
   .nav-links a { display: block; padding: 0.6rem 0; }
 }
 
+/* Short brand ("jath.cl") on phones so brand + controls fit one row */
+.brand-short { display: none; }
+@media (max-width: 480px) {
+  .brand-full  { display: none; }
+  .brand-short { display: inline; }
+}
+
 /* Footer links inherit the muted mono style */
 footer.site-footer a { color: var(--text-muted); }
 footer.site-footer a:hover { color: var(--accent); }
+
+/* ── Buttons (link-styled, mono, square — like .theme-btn but larger) ── */
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--bg);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn:hover {
+  background: transparent;
+  color: var(--accent);
+  text-decoration: none;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border-bright);
+}
+.btn-ghost:hover { border-color: var(--accent); }
+
+/* ── Hero ── */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+  padding: 3rem 0 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-3);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+[data-theme="dark"] .hero h1 {
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.35), 0 0 18px rgba(54, 249, 246, 0.35);
+}
+
+.hero-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent-2);
+  margin-bottom: 1.25rem;
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  max-width: 52ch;
+  margin-bottom: 1.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Fake terminal window around a highlighted code block */
+.hero-terminal {
+  background: var(--code-bg);
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--border), 0 18px 40px -20px rgba(0, 0, 0, 0.6);
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+.terminal-bar .dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--border-bright);
+}
+.terminal-bar .dot:nth-child(1) { background: var(--accent-2); }
+.terminal-bar .dot:nth-child(2) { background: var(--accent-3); }
+.terminal-bar .dot:nth-child(3) { background: var(--accent); }
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+}
+.hero-terminal .code-block      { margin: 0; }
+.hero-terminal .code-lang       { display: none; }
+.hero-terminal .highlight pre {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+/* ── Home sections ── */
+.section { margin-top: 3.5rem; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-head h2 { margin: 0; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 1.25rem;
+}
+.card-grid .post-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;               /* Pico gives <article> a bottom margin */
+}
+.card-grid .post-card .read-more { margin-top: auto; }
+
+/* What I do: numbered columns */
+.focus-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1.25rem;
+}
+.focus-grid li {
+  list-style: none;
+  margin: 0;
+  padding: 1.25rem 0 0;
+  border-top: 2px solid var(--border-bright);
+}
+.focus-grid li:hover { border-top-color: var(--accent); }
+.focus-index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-2);
+  letter-spacing: 0.06em;
+}
+.focus-grid h2 { font-size: 1.1rem; margin: 0.35rem 0 0.5rem; }
+.focus-grid p  { font-size: 0.95rem; color: var(--text-muted); margin: 0; }
+
+/* Closing call to action */
+.cta-band {
+  margin-top: 3.5rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+}
+.cta-band h2 { margin: 0 0 0.35rem; font-size: 1.3rem; }
+.cta-band p  { margin: 0; color: var(--text-muted); }
+
+/* ── Skills ── */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 1.25rem;
+}
+.skill-group {
+  margin: 0;
+  padding: 1.5rem 1.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--border-bright);
+}
+.skill-group:hover { border-top-color: var(--accent); }
+.skill-group h2 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.skill-group .post-tags { margin: 0; }
+
+/* ── Project detail ── */
+.project-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.post-body.about-body { margin-top: 0; }
+
+/* ── Blog digest ── */
+.digest-notes {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  margin-bottom: 0.75rem;
+}
+.digest-notes ul { margin: 0; padding-left: 1.1rem; }
+.digest-notes li { margin-bottom: 0.2rem; }
+.digest-notes p  { margin: 0 0 0.35rem; }
+.blog-more { margin-top: 2rem; text-align: center; }
+
+/* ── Contact ── */
+.channel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 1rem;
+}
+.channel-list li { list-style: none; margin: 0; }
+.channel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  height: 100%;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border-bright);
+  color: var(--text);
+  transition: border-left-color 0.15s, background 0.15s;
+}
+.channel:hover {
+  border-left-color: var(--accent);
+  background: var(--bg-elevated);
+  text-decoration: none;
+}
+.channel-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.channel-value {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+.channel-note { font-size: 0.85rem; color: var(--text-muted); }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-top: 1.5rem; }
+}
+
+@media (max-width: 640px) {
+  .section, .cta-band { margin-top: 2.5rem; }
+  .cta-band   { padding: 1.25rem; }
+  .skill-group { padding: 1rem; }
+  .channel    { padding: 1rem; }
+}
