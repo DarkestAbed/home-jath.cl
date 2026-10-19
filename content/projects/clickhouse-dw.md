@@ -6,7 +6,7 @@ status: archivado
 role: ingeniero de datos
 stack: [Apache Spark, Clickhouse, Docker, Python, SQL]
 repo: https://github.com/jtapiath-cl/docker_training
-order: 4
+order: 10
 ---
 
 ## El desafío

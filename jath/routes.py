@@ -51,14 +51,14 @@ def register(rt):
     @rt("/")
     def home():
         doc = load("pages/home")
-        featured = [p for p in collection("projects") if p.get("featured")][:3]
+        featured = [p for p in collection("projects") if p.get("featured")]
         posts = load("pages/blog").posts[:3]
         return page(
             "",
             hero(doc),
             section("Lo que hago", focus_grid(doc.focus)),
             section("Proyectos destacados",
-                    Div(*[project_card(p) for p in featured], cls="card-grid"),
+                    Div(*[project_card(p) for p in featured], cls="card-grid card-grid-4"),
                     more=("Todos los proyectos →", "/proyectos")),
             section("Últimas del blog",
                     Div(*[digest_card(p, with_notes=False) for p in posts], cls="card-grid"),

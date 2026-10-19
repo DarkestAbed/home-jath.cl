@@ -7,8 +7,8 @@ channels:
     href: mailto:javier@jath.cl
     note: La forma más directa. Respondo en español o inglés.
   - label: GitHub
-    value: jtapiath-cl
-    href: https://github.com/jtapiath-cl
+    value: DarkestAbed
+    href: https://github.com/DarkestAbed
     note: Código, experimentos y proyectos.
   - label: Blog
     value: blog.jath.cl

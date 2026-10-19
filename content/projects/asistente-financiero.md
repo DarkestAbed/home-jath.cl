@@ -5,7 +5,8 @@ year: 2026
 status: en uso
 role: autor del prompt
 stack: [LLMs, prompt engineering, Gemini]
-order: 5
+featured: true
+order: 4
 ---
 
 ## La idea

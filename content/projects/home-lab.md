@@ -5,8 +5,7 @@ year: 2026
 status: en curso
 role: operador único
 stack: [Docker, Portainer, Coolify, Linux, Beszel]
-featured: true
-order: 3
+order: 6
 ---
 
 ## Por qué

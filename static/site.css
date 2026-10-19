@@ -192,6 +192,12 @@ footer.site-footer a:hover { color: var(--accent); }
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 1.25rem;
 }
+/* Featured projects: 4 → 2 → 1 columns, never a lone orphan card */
+.card-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card-grid-4 .post-card { padding: 1.25rem 1.35rem; }
+@media (max-width: 1100px) { .card-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px)  { .card-grid-4 { grid-template-columns: minmax(0, 1fr); } }
+
 .card-grid .post-card {
   display: flex;
   flex-direction: column;
