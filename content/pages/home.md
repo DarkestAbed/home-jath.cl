@@ -1,11 +1,11 @@
 ---
 kicker: "~/jath.cl $ whoami"
 title: Javier Thompson
-tagline: desarrollador · tecnólogo · ingeniero de datos
+tagline: desarrollador · tecnólogo · arquitecto
 lead: >-
   Construyo software y plataformas de datos, lidero equipos técnicos y
   escribo sobre lo que aprendo en el camino: infraestructura, Python,
-  self-hosting y el oficio de hacer software con otras personas.
+  self-hosting y el oficio de hacer software con otras personas
 ctas:
   - label: Ver proyectos
     href: /proyectos
@@ -28,7 +28,7 @@ focus:
       mánager de ingeniería. Co-construir antes que imponer.
 cta:
   title: ¿Conversamos?
-  text: Proyectos, ideas, consultas o simplemente buena conversación técnica.
+  text: Proyectos, ideas, consultas o simplemente buena conversación técnica
 ---
 
 ```python

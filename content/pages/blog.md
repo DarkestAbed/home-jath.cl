@@ -117,8 +117,4 @@ posts:
   - Un entorno cliente/servidor efímero con dos comandos de Docker. (Artículo en inglés).
 ---
 
-En [blog.jath.cl](https://blog.jath.cl) escribo en extenso sobre
-infraestructura, datos, Python y el oficio de hacer software. Esta página
-es un resumen estático, escrito a mano, de los artículos publicados: la idea
-central de cada uno y sus puntos clave. Para leerlos completos, sigue el
-enlace a cada artículo.
+En [mi blog](https://blog.jath.cl) escribo en extenso sobre infraestructura, datos, Python y el oficio de hacer software. Esta página es un resumen estático, escrito a mano, de los artículos publicados: la idea central de cada uno y sus puntos clave. Para leerlos completos, sigue el enlace a cada artículo.
