@@ -1,0 +1,154 @@
+/* ============================================================
+   pypost — site theme (yours to edit)
+   Colors, fonts, and the dark/light palettes live here.
+   Layout and components live in custom.css (owned by the
+   template — you rarely need to touch it).
+
+   This file is only ever written when it does not exist:
+   `copier update` will never overwrite your changes.
+   ============================================================ */
+
+/* ── Self-hosted fonts (latin subset, variable) ── */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/static/fonts/inter-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/static/fonts/jetbrainsmono-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Font choices ── */
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Color tokens ── */
+/* Dark: SynthWave '84-inspired, pushed slightly bluer. Text colors are
+   all ≥ 7:1 (WCAG AAA) against --bg and --bg-surface. */
+:root,
+[data-theme="dark"] {
+  --bg:            #16142a;
+  --bg-surface:    #1e1b36;
+  --bg-elevated:   #262340;
+  --border:        #2f2b52;
+  --border-bright: #495495;
+  --accent:        #36f9f6;   /* neon cyan */
+  --accent-dim:    #29b8d8;
+  --accent-2:      #ff7edb;   /* neon pink */
+  --accent-3:      #fede5d;   /* neon yellow */
+  --text:          #ebe9f7;
+  --text-heading:  #ffffff;
+  --text-muted:    #a3a8d9;
+  --code-bg:       #100e1f;
+  --tag-bg:        #241b3f;
+  --tag-color:     #ff7edb;
+
+  color-scheme: dark;   /* dark native scrollbars and form controls */
+
+  --pico-background-color:      var(--bg);
+  --pico-card-background-color: var(--bg-surface);
+  --pico-card-border-color:     var(--border);
+  --pico-color:                 var(--text);
+  --pico-h1-color:              var(--text-heading);
+  --pico-h2-color:              var(--text-heading);
+  --pico-h3-color:              var(--accent-2);
+  --pico-primary:               var(--accent);
+  --pico-primary-hover:         var(--accent-2);
+  --pico-secondary-color:       var(--text-muted);
+  --pico-border-color:          var(--border);
+  --pico-muted-color:           var(--text-muted);
+  --pico-muted-border-color:    var(--border);
+  --pico-code-background-color: var(--code-bg);
+  --pico-code-color:            var(--accent);
+}
+
+[data-theme="light"] {
+  --bg:            #ffffff;
+  --bg-surface:    #f5f7fa;
+  --bg-elevated:   #edf0f5;
+  --border:        #e2e5ec;
+  --border-bright: #c8cdd8;
+  --accent:        #0066cc;
+  --accent-dim:    #3388dd;
+  --text:          #2d3244;
+  --text-heading:  #0f1117;
+  --text-muted:    #8090a8;
+  --code-bg:       #f0f2f6;
+  --tag-bg:        #edf0f5;
+  --tag-color:     #4466aa;
+
+  color-scheme: light;
+
+  --pico-background-color:      var(--bg);
+  --pico-card-background-color: var(--bg-surface);
+  --pico-card-border-color:     var(--border);
+  --pico-color:                 var(--text);
+  --pico-h1-color:              var(--text-heading);
+  --pico-h2-color:              var(--text-heading);
+  --pico-h3-color:              var(--accent);
+  --pico-primary:               var(--accent);
+  --pico-primary-hover:         var(--accent-dim);
+  --pico-secondary-color:       var(--text-muted);
+  --pico-border-color:          var(--border);
+  --pico-muted-color:           var(--text-muted);
+  --pico-muted-border-color:    var(--border);
+  --pico-code-background-color: var(--code-bg);
+  --pico-code-color:            var(--accent);
+}
+
+/* ── Dark-mode accents ──
+   Small additions on top of custom.css. Selectors carry [data-theme]
+   so they outrank the template rules that load after this file. */
+[data-theme="dark"] h3 { color: var(--accent-2); }
+
+[data-theme="dark"] .nav-brand,
+[data-theme="dark"] .page-header h1,
+[data-theme="dark"] .post-header h1 {
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.35), 0 0 12px rgba(54, 249, 246, 0.35);
+}
+
+[data-theme="dark"] .series-label { color: var(--accent-3); }
+
+[data-theme="dark"] ::selection {
+  background: var(--border-bright);
+  color: var(--text-heading);
+}
+
+/* ── Code highlighting: SynthWave '84 token colors (dark only) ──
+   Overrides the generated pygments.css; [data-theme] scoping beats its
+   unscoped .highlight rules. */
+[data-theme="dark"] .highlight                { color: var(--text); }
+[data-theme="dark"] .highlight .hll           { background-color: #2a2550; }
+[data-theme="dark"] .highlight :is(.c, .ch, .cm, .cp, .cpf, .c1, .cs, .gu)
+                                              { color: #848bbd; font-style: italic; }
+[data-theme="dark"] .highlight :is(.k, .kc, .kd, .kn, .kp, .kr, .ow)
+                                              { color: #fede5d; font-weight: normal; }
+[data-theme="dark"] .highlight :is(.kt, .nc, .ne, .nb, .bp)
+                                              { color: #fe4450; font-weight: normal; }
+[data-theme="dark"] .highlight :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .si, .sx, .sr, .s1, .ss, .ld)
+                                              { color: #ff8b39; }
+[data-theme="dark"] .highlight .se            { color: #f97e72; }
+[data-theme="dark"] .highlight :is(.m, .mb, .mf, .mh, .mi, .mo, .il, .l)
+                                              { color: #f97e72; }
+[data-theme="dark"] .highlight :is(.nf, .fm, .nd)
+                                              { color: #36f9f6; }
+[data-theme="dark"] .highlight :is(.n, .nv, .vc, .vg, .vi, .vm, .nx, .py, .nl, .nn, .ni, .no)
+                                              { color: #ff7edb; }
+[data-theme="dark"] .highlight .na            { color: #fede5d; }
+[data-theme="dark"] .highlight .nt            { color: #72f1b8; }
+[data-theme="dark"] .highlight :is(.o, .p, .pm, .w, .x, .esc, .g, .gh, .gr, .gt)
+                                              { color: var(--text); }
+[data-theme="dark"] .highlight .gd            { color: #fe4450; }
+[data-theme="dark"] .highlight .gi            { color: #72f1b8; }
+[data-theme="dark"] .highlight :is(.gp, .go)  { color: #36f9f6; }
+[data-theme="dark"] .highlight .err           { color: #fe4450; background: none; }
